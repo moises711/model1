@@ -8,6 +8,7 @@ class calendario extends Model
 {
     protected $fillable =[
         'hora',
+        
         'fecha',
         'descripcion',
         'estado',

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->time('hora');
             $table->date('fecha');
+            
             $table->text('descripcion');
             $table->string('estado')->default('pendiente','completado','en progreso');
             $table->timestamps();
