@@ -10,8 +10,6 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class CalendarioResource extends Resource
 {
@@ -23,7 +21,26 @@ class CalendarioResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\DatePicker::make('fecha')
+                    ->required()
+                    ->label('Fecha'),
+
+                Forms\Components\TimePicker::make('hora')
+                    ->required()
+                    ->label('Hora'),
+
+                Forms\Components\Textarea::make('descripcion')
+                    ->label('Descripción')
+                    ->required(),
+
+                Forms\Components\Select::make('estado')
+                    ->label('Estado')
+                    ->options([
+                        'pendiente' => 'Pendiente',
+                        'en progreso' => 'En progreso',
+                        'completado' => 'Completado',
+                    ])
+                    ->required(),
             ]);
     }
 
@@ -31,7 +48,10 @@ class CalendarioResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('fecha')->label('Fecha')->date('d/m/Y'),
+                Tables\Columns\TextColumn::make('hora')->label('Hora')->time('H'),
+                Tables\Columns\TextColumn::make('descripcion')->label('Descripción')->limit(50),
+                Tables\Columns\TextColumn::make('estado')->label('Estado'),
             ])
             ->filters([
                 //

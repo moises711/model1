@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('calendarios', function (Blueprint $table) {
             $table->id();
-            $table->time('hora');
+            $table->time('hora')->nullable();
             $table->date('fecha');
-            
             $table->text('descripcion');
-            $table->string('estado')->default('pendiente','completado','en progreso');
+            $table->enum('estado', ['pendiente', 'completado', 'en progreso'])->default('pendiente');
+
             $table->timestamps();
         });
     }
