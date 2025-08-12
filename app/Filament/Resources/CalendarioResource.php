@@ -49,7 +49,7 @@ class CalendarioResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('fecha')->label('Fecha')->date('d/m/Y'),
-                Tables\Columns\TextColumn::make('hora')->label('Hora')->time('H:i'),
+                Tables\Columns\TextColumn::make('hora')->label('Hora')->time('H'),
                 Tables\Columns\TextColumn::make('descripcion')->label('Descripción')->limit(50),
                 Tables\Columns\TextColumn::make('estado')->label('Estado'),
             ])

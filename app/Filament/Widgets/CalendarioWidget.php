@@ -13,18 +13,16 @@ class CalendarioWidget extends Widget
 
     public function render(): View
     {
-        $currentDate = Carbon::create(2025, 8, 1); // Cambia si quieres mes dinámico
-
+        // Obtenemos todas las fechas de eventos del mes actual en formato Y-m-d
         $eventDates = Calendario::pluck('fecha')
             ->map(fn($fecha) => Carbon::parse($fecha)->format('Y-m-d'))
             ->toArray();
 
         return view(static::$view, [
             'eventDates' => $eventDates,
-            'currentMonth' => $currentDate->locale('es')->isoFormat('MMMM YYYY'),
-            'startDayOfWeek' => $currentDate->copy()->startOfMonth()->dayOfWeek,
-            'daysInMonth' => $currentDate->daysInMonth,
-            'currentDate' => $currentDate,
+            'currentMonth' => now()->locale('es')->isoFormat('MMMM YYYY'),
+            'startDayOfWeek' => now()->startOfMonth()->dayOfWeek, // Domingo=0, Lunes=1,...
+            'daysInMonth' => now()->daysInMonth,
         ]);
     }
 }
