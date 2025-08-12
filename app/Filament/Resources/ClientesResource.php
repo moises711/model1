@@ -2,10 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\CategoriResource\Pages;
-use App\Filament\Resources\CategoriResource\RelationManagers;
-use App\Models\Categori;
-use App\Models\Categoria;
+use App\Filament\Resources\ClientesResource\Pages;
+use App\Filament\Resources\ClientesResource\RelationManagers;
+use App\Models\Cliente;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -14,9 +13,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class CategoriResource extends Resource
+class ClientesResource extends Resource
 {
-    protected static ?string $model = Categoria::class;
+    protected static ?string $model = Cliente::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -32,14 +31,7 @@ class CategoriResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                //
             ])
             ->filters([
                 //
@@ -64,9 +56,9 @@ class CategoriResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCategoris::route('/'),
-            'create' => Pages\CreateCategori::route('/create'),
-            'edit' => Pages\EditCategori::route('/{record}/edit'),
+            'index' => Pages\ListClientes::route('/'),
+            'create' => Pages\CreateClientes::route('/create'),
+            'edit' => Pages\EditClientes::route('/{record}/edit'),
         ];
     }
 }

@@ -8,6 +8,7 @@ class Categoria extends Model
     use HasFactory;
 
     protected $fillable = [
+        
         'name',
         'description',
         // agrega aquí los campos que quieras permitir
